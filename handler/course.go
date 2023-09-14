@@ -20,10 +20,6 @@ func NewCourseHandler(service course.Service) *courseHandler {
 }
 
 func (h *courseHandler) GetAllCoursesHandler(c *gin.Context) {
-	// jwtClaims, _ := c.Get("jwtClaims")
-	// claims, _ := jwtClaims.(jwt.MapClaims)
-	// userID, _ := claims["sub"].(float64)
-
 	courses, err := h.courseService.FindAll()
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{

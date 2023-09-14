@@ -8,6 +8,7 @@ type Repository interface {
 	Create(student Student) (Student, error)
 	Update(student Student) (Student, error)
 	Delete(student Student) (Student, error)
+	// AddCourseToStudent(studentID int, courseID int) (Student, error)
 }
 
 type repository struct {
@@ -21,7 +22,7 @@ func NewRepository(db *gorm.DB) *repository {
 func (r *repository) FindAll() ([]Student, error) {
 	var students []Student
 
-	err := r.db.Find(&students).Error
+	err := r.db.Preload("Courses").Find(&students).Error
 
 	return students, err
 }
@@ -51,3 +52,27 @@ func (r *repository) Delete(student Student) (Student, error) {
 
 	return student, err
 }
+
+// func (r *repository) AddCourseToStudent(studentID int, courseID int) (Student, error) {
+// 	// Ambil data siswa dari database
+//     student, err := GetStudentByID(studentID)
+//     if err != nil {
+//         return err
+//     }
+
+//     // Ambil data kursus dari database
+//     course, err := GetCourseByID(courseID)
+//     if err != nil {
+//         return err
+//     }
+
+//     // Tambahkan ID kursus ke daftar kursus siswa
+//     student.Courses = append(student.Courses, courseID)
+
+//     // Simpan perubahan ke dalam database
+//     if err := UpdateStudent(student); err != nil {
+//         return err
+//     }
+
+//     return nil
+// }

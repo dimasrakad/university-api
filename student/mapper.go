@@ -9,5 +9,6 @@ func ConvertToStudentResponse(student Student) StudentResponse {
 		Phone:     student.Phone,
 		Email:     student.Email,
 		Birthdate: student.Birthdate,
+		Courses:   student.Courses,
 	}
 }
