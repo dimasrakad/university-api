@@ -2,6 +2,7 @@ package main
 
 import (
 	"log"
+	"university-api/course"
 	"university-api/handler"
 	"university-api/initializers"
 	"university-api/middleware"
@@ -31,6 +32,10 @@ func main() {
 	studentService := student.NewService(studentRepository)
 	studentHandler := handler.NewStudentHandler(studentService)
 
+	courseRepository := course.NewRepository(db)
+	courseService := course.NewService(courseRepository)
+	courseHandler := handler.NewCourseHandler(courseService)
+
 	//inisiasi userhandler
 	userRepository := user.NewRepository(db)
 	userService := user.NewService(userRepository)
@@ -54,6 +59,16 @@ func main() {
 	routerV1Students.GET("/:id", studentHandler.GetStudentHandler)
 	routerV1Students.PUT("/:id", studentHandler.UpdateStudentHandler)
 	routerV1Students.DELETE("/:id", studentHandler.DeleteStudentHandler)
+
+	/*
+		COURSE ROUTER
+	*/
+	routerV1Courses := routerV1.Group("/courses", middleware.RequireAuth)
+	routerV1Courses.GET("", courseHandler.GetAllCoursesHandler)
+	routerV1Courses.POST("", courseHandler.CreateCourseHandler)
+	routerV1Courses.GET("/:id", courseHandler.GetCourseHandler)
+	routerV1Courses.PUT("/:id", courseHandler.UpdateCourseHandler)
+	routerV1Courses.DELETE("/:id", courseHandler.DeleteCourseHandler)
 
 	router.Run(":3030")
 }
