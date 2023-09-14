@@ -1,0 +1,53 @@
+@url = http://localhost:3030
+
+### GetAll Student 
+GET {{url}}/v1/students
+# Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2OTcxODcwMjcsInN1YiI6MX0.8eBMTufHrZuspM04YwiCfcl11HnSPqhVmDii9NlV94M
+
+### GetByID Student
+GET {{url}}/v1/students/1
+# Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2OTcxODcwMjcsInN1YiI6MX0.8eBMTufHrZuspM04YwiCfcl11HnSPqhVmDii9NlV94M
+
+### SignUp
+POST {{url}}/v1/signup
+Content-Type: application/json
+
+{
+  "email" : "student@university.id",
+  "password" : "123",
+}
+
+### Login
+POST {{url}}/v1/login
+Content-Type: application/json
+
+{
+  "email" : "student@university.id",
+  "password" : "123",
+}
+
+### Post
+POST {{url}}/v1/students
+Content-Type: application/json
+# Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2OTcxODcwMjcsInN1YiI6MX0.8eBMTufHrZuspM04YwiCfcl11HnSPqhVmDii9NlV94M
+
+{
+  "name" : "Student Two",
+  "address" : "Tangerang",
+  "major" : "Informatics Engineering",
+  "Phone" : "0317938748"
+}
+
+### Put
+PUT {{url}}/v1/students/45
+Content-Type: application/json
+
+{
+  "name" : "Student Two",
+  "address" : "Tangerang",
+  "major" : "Informatics Engineering",
+  "Phone" : "0317938748"
+}
+
+### Delete
+DELETE  {{url}}/v1/students/2
