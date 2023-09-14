@@ -86,6 +86,7 @@ func (s *service) Update(ID int, studentRequest StudentRequest) (Student, error)
 		student.Email = studentRequest.Email
 	}
 	if studentRequest.Birthdate != "" {
+		// Mengubah format data dari YYYY-MM-DD enjaf
 		t, _ := time.Parse("2006-01-02", studentRequest.Birthdate)
 		rfc3339Date, _ := time.Parse(time.RFC3339, t.Format(time.RFC3339))
 		student.Birthdate = rfc3339Date
