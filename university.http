@@ -5,7 +5,7 @@ GET {{url}}/v1/students
 # Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2OTcxODcwMjcsInN1YiI6MX0.8eBMTufHrZuspM04YwiCfcl11HnSPqhVmDii9NlV94M
 
 ### GetByID Student
-GET {{url}}/v1/students/1
+GET {{url}}/v1/students/5
 # Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2OTcxODcwMjcsInN1YiI6MX0.8eBMTufHrZuspM04YwiCfcl11HnSPqhVmDii9NlV94M
 
 ### SignUp
@@ -39,14 +39,14 @@ Content-Type: application/json
 }
 
 ### Put
-PUT {{url}}/v1/students/45
+PUT {{url}}/v1/students/1
 Content-Type: application/json
 
 {
-  "name" : "Student Two",
-  "address" : "Tangerang",
+  "name" : "Student One",
+  "address" : "Bandung",
   "major" : "Informatics Engineering",
-  "Phone" : "0317938748"
+  "Phone" : "0317987001"
 }
 
 ### Delete
