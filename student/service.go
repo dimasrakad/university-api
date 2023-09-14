@@ -82,6 +82,14 @@ func (s *service) Update(ID int, studentRequest StudentRequest) (Student, error)
 	if studentRequest.Phone != "" {
 		student.Phone = studentRequest.Phone
 	}
+	if studentRequest.Email != "" {
+		student.Email = studentRequest.Email
+	}
+	if studentRequest.Birthdate != "" {
+		t, _ := time.Parse("2006-01-02", studentRequest.Birthdate)
+		rfc3339Date, _ := time.Parse(time.RFC3339, t.Format(time.RFC3339))
+		student.Birthdate = rfc3339Date
+	}
 
 	newStudent, err := s.repository.Update(student)
 	return newStudent, err
