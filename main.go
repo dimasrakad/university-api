@@ -4,6 +4,7 @@ import (
 	"log"
 	"university-api/handler"
 	"university-api/initializers"
+	"university-api/middleware"
 	"university-api/student"
 	"university-api/user"
 
@@ -47,7 +48,7 @@ func main() {
 	/*
 		STUDENT ROUTER
 	*/
-	routerV1Students := routerV1.Group("/students")
+	routerV1Students := routerV1.Group("/students", middleware.RequireAuth)
 	routerV1Students.GET("", studentHandler.GetAllStudentsHandler)
 	routerV1Students.POST("", studentHandler.CreateStudentHandler)
 	routerV1Students.GET("/:id", studentHandler.GetStudentHandler)
