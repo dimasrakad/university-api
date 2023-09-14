@@ -51,5 +51,5 @@ func main() {
 	routerV1Students.PUT("/:id", studentHandler.UpdateStudentHandler)
 	routerV1Students.DELETE("/:id", studentHandler.DeleteStudentHandler)
 
-	router.Run(":3030")
+	router.Run()
 }

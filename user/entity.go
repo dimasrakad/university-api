@@ -1,13 +1,16 @@
 package user
 
 import (
-	"university-api/student"
+	"time"
+
 	"gorm.io/gorm"
 )
 
 type User struct {
 	gorm.Model
-	Email    string `gorm:"unique"`
-	Password string
-	Students    []student.Student
+	Email     string `gorm:"unique"`
+	Password  string
+	CreatedAt time.Time
+	UpdatedAt time.Time
+	// Students    []student.Student
 }
