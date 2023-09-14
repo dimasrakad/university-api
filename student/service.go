@@ -1,9 +1,9 @@
 package student
 
 type Service interface {
-	FindAll() ([]Student, error)
+	FindAll(UserID uint) ([]Student, error)
 	FindByID(ID int) (Student, error)
-	Create(studentRequest StudentRequest) (Student, error)
+	Create(studentRequest StudentRequest,UserID uint) (Student, error)
 	Update(ID int, StudentRequest StudentRequest) (Student, error)
 	Delete(ID int) (Student, error)
 }
@@ -16,7 +16,7 @@ func NewService(repository Repository) *service {
 	return &service{repository}
 }
 
-func (s *service) FindAll() ([]Student, error) {
+func (s *service) FindAll(UserID uint) ([]Student, error) {
 	students, err := s.repository.FindAll()
 	return students, err
 }
@@ -26,13 +26,13 @@ func (s *service) FindByID(ID int) (Student, error) {
 	return student, err
 }
 
-func (s *service) Create(studentRequest StudentRequest) (Student, error) {
+func (s *service) Create(studentRequest StudentRequest,UserID uint) (Student, error) {
 	student := Student{
 		Name:    studentRequest.Name,
 		Address: studentRequest.Address,
 		Major:   studentRequest.Major,
 		Phone:   studentRequest.Phone,
-		// UserID:  UserID,
+		UserID:  UserID,
 	}
 
 	newStudent, err := s.repository.Create(student)
