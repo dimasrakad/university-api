@@ -8,6 +8,14 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2OTcyNjY4M
 GET {{url}}/v1/students/5
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2OTcyNjY4MDQsInN1YiI6MX0.wBq_znZZTkdhEAkzmtOq71723Qq6Kyoob0PWnDruU6Q
 
+### GetAll Courses 
+GET {{url}}/v1/courses
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2OTcyNjY4MDQsInN1YiI6MX0.wBq_znZZTkdhEAkzmtOq71723Qq6Kyoob0PWnDruU6Q
+
+### GetByID Student
+GET {{url}}/v1/students/5
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2OTcyNjY4MDQsInN1YiI6MX0.wBq_znZZTkdhEAkzmtOq71723Qq6Kyoob0PWnDruU6Q
+
 ### SignUp
 POST {{url}}/v1/signup
 Content-Type: application/json
@@ -35,18 +43,23 @@ Content-Type: application/json
   "name" : "Student Two",
   "address" : "Tangerang",
   "major" : "Informatics Engineering",
-  "Phone" : "0317938748"
+  "phone" : "0317938748",
+  "email" : "student2@gmail.com",
+  "birthdate" : "2000-01-01"
 }
 
 ### Put
 PUT {{url}}/v1/students/1
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2OTcyNjY4MDQsInN1YiI6MX0.wBq_znZZTkdhEAkzmtOq71723Qq6Kyoob0PWnDruU6Q
 
 {
-  "name" : "Student One",
-  "address" : "Bandung",
+  "name" : "Student Two",
+  "address" : "Tangerang",
   "major" : "Informatics Engineering",
-  "Phone" : "0317987001"
+  "phone" : "0317938748",
+  "email" : "student2@gmail.com",
+  "birthdate" : "2000-01-01"
 }
 
 ### Delete
