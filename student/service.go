@@ -1,6 +1,11 @@
 package student
 
-import "time"
+import (
+	"errors"
+	"time"
+
+	"github.com/go-playground/validator/v10"
+)
 
 type Service interface {
 	FindAll() ([]Student, error)
@@ -48,7 +53,23 @@ func (s *service) Create(studentRequest StudentRequest) (Student, error) {
 }
 
 func (s *service) Update(ID int, studentRequest StudentRequest) (Student, error) {
+
+	// Validasi ID
+	if ID <= 0 {
+		return Student{}, errors.New("ID mahasiswa tidak valid")
+	}
+
+	// Validasi data mahasiswa
+	v := validator.New()
+	if err := v.Struct(studentRequest); err != nil {
+		return Student{}, err
+	}
+
+	// Temukan mahasiswa berdasarkan ID
 	student, err := s.repository.FindByID(ID)
+	if err != nil {
+		return Student{}, err
+	}
 
 	if studentRequest.Name != "" {
 		student.Name = studentRequest.Name
