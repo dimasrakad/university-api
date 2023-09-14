@@ -45,7 +45,6 @@ func (s *service) Create(studentRequest StudentRequest) (Student, error) {
 		Phone:     studentRequest.Phone,
 		Email:     studentRequest.Email,
 		Birthdate: rfc3339Date,
-		// UserID:  UserID,
 	}
 
 	newStudent, err := s.repository.Create(student)
