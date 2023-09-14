@@ -5,6 +5,7 @@ import (
 	"university-api/handler"
 	"university-api/initializers"
 	"university-api/student"
+	"university-api/user"
 
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"
@@ -29,8 +30,16 @@ func main() {
 	studentService := student.NewService(studentRepository)
 	studentHandler := handler.NewStudentHandler(studentService)
 
+	//inisiasi userhandler
+	userRepository := user.NewRepository(db)
+	userService := user.NewService(userRepository)
+	userHandler := handler.NewUserHandler(userService)
+
 	router := gin.Default()
 	routerV1 := router.Group("/v1")
+	// USER ROUTER
+	routerV1.POST("/signup", userHandler.Signup)
+	routerV1.POST("/login", userHandler.Login)
 
 	/*
 		STUDENT ROUTER
