@@ -37,7 +37,10 @@ func main() {
 
 	router := gin.Default()
 	routerV1 := router.Group("/v1")
-	// USER ROUTER
+
+	/*
+		USER ROUTER
+	*/
 	routerV1.POST("/signup", userHandler.Signup)
 	routerV1.POST("/login", userHandler.Login)
 

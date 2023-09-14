@@ -11,7 +11,7 @@ import (
 )
 
 type userHandler struct {
-	studentService user.Service
+	userService user.Service
 }
 
 func NewUserHandler(service user.Service) *userHandler {
@@ -41,7 +41,7 @@ func (h *userHandler) Signup(c *gin.Context) {
 		}
 	}
 
-	user, err := h.studentService.Create(signupRequest)
+	user, err := h.userService.Create(signupRequest)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
 			"errors": err,
@@ -76,7 +76,7 @@ func (h *userHandler) Login(c *gin.Context) {
 			return
 		}
 	}
-	tokenString, err := h.studentService.Login(loginRequest)
+	tokenString, err := h.userService.Login(loginRequest)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
 			"errors": err.Error(),

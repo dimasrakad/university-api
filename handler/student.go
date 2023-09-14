@@ -9,7 +9,6 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/go-playground/validator/v10"
-	"github.com/golang-jwt/jwt/v5"
 )
 
 type studentHandler struct {
@@ -21,11 +20,8 @@ func NewStudentHandler(service student.Service) *studentHandler {
 }
 
 func (h *studentHandler) GetAllStudentsHandler(c *gin.Context) {
-	jwtClaims, _ := c.Get("jwtClaims")
-	claims, _ := jwtClaims.(jwt.MapClaims)
-	userID, _ := claims["sub"].(float64)
 
-	students, err := h.studentService.FindAll(uint(userID))
+	students, err := h.studentService.FindAll()
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
 			"errors": err,
@@ -69,11 +65,7 @@ func (h *studentHandler) CreateStudentHandler(c *gin.Context) {
 		}
 	}
 
-	jwtClaims, _ := c.Get("jwtClaims")
-	claims, _ := jwtClaims.(jwt.MapClaims)
-	userID, _ := claims["sub"].(float64)
-
-	student, err := h.studentService.Create(studentRequest ,uint(userID))
+	student, err := h.studentService.Create(studentRequest)
 
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
