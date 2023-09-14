@@ -1,5 +1,7 @@
 package student
 
+import "time"
+
 type Service interface {
 	FindAll() ([]Student, error)
 	FindByID(ID int) (Student, error)
@@ -27,11 +29,17 @@ func (s *service) FindByID(ID int) (Student, error) {
 }
 
 func (s *service) Create(studentRequest StudentRequest) (Student, error) {
+	// Mengubah format data dari YYYY-MM-DD enjaf
+	t, _ := time.Parse("2006-01-02", studentRequest.Birthdate)
+	rfc3339Date, _ := time.Parse(time.RFC3339, t.Format(time.RFC3339))
+
 	student := Student{
-		Name:    studentRequest.Name,
-		Address: studentRequest.Address,
-		Major:   studentRequest.Major,
-		Phone:   studentRequest.Phone,
+		Name:      studentRequest.Name,
+		Address:   studentRequest.Address,
+		Major:     studentRequest.Major,
+		Phone:     studentRequest.Phone,
+		Email:     studentRequest.Email,
+		Birthdate: rfc3339Date,
 		// UserID:  UserID,
 	}
 

@@ -8,6 +8,8 @@ type Student struct {
 	Address   string
 	Major     string
 	Phone     string
+	Email     string
+	Birthdate time.Time
 	CreatedAt time.Time
 	UpdatedAt time.Time
 	// UserID    uint

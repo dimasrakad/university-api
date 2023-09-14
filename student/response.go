@@ -1,9 +1,13 @@
 package student
 
+import "time"
+
 type StudentResponse struct {
-	ID      int    `json:"id"`
-	Name    string `json:"name"`
-	Address string `json:"address"`
-	Major   string `json:"major"`
-	Phone   string `json:"phone"`
+	ID        int       `json:"id"`
+	Name      string    `json:"name"`
+	Address   string    `json:"address"`
+	Major     string    `json:"major"`
+	Phone     string    `json:"phone"`
+	Email     string    `json:"email"`
+	Birthdate time.Time `json:"birthdate"`
 }
