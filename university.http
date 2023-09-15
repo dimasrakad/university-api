@@ -34,16 +34,16 @@ Content-Type: application/json
 
 ### GetAll Student 
 GET {{url}}/v1/students
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2OTcyNjY4MDQsInN1YiI6MX0.wBq_znZZTkdhEAkzmtOq71723Qq6Kyoob0PWnDruU6Q
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2OTczMzk5OTAsInN1YiI6MX0.EZO8aoijEd51h91B31G7v1KG-q-iu1ym680vvmA6HxI
 
 ### GetByID Student
-GET {{url}}/v1/students/5
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2OTcyNjY4MDQsInN1YiI6MX0.wBq_znZZTkdhEAkzmtOq71723Qq6Kyoob0PWnDruU6Q
+GET {{url}}/v1/students/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2OTczMzk5OTAsInN1YiI6MX0.EZO8aoijEd51h91B31G7v1KG-q-iu1ym680vvmA6HxI
 
 ### Post
 POST {{url}}/v1/students
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2OTczMzc0OTksInN1YiI6MX0.vqNZbClMSQiqyEzXYOws0zyDqMjH-B3T5cBIw0waz0w
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2OTczMzk5OTAsInN1YiI6MX0.EZO8aoijEd51h91B31G7v1KG-q-iu1ym680vvmA6HxI
 
 {
   "name" : "Student One",
@@ -57,19 +57,20 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2OTczMzc0O
 ### Put
 PUT {{url}}/v1/students/1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2OTczMzc0OTksInN1YiI6MX0.vqNZbClMSQiqyEzXYOws0zyDqMjH-B3T5cBIw0waz0w
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2OTczMzk5OTAsInN1YiI6MX0.EZO8aoijEd51h91B31G7v1KG-q-iu1ym680vvmA6HxI
 
 {
-  "name" : "Student Two",
-  "address" : "Tangerang",
+  "name" : "Student One",
+  "address" : "Jakarta",
   "major" : "Informatics Engineering",
   "phone" : "0317938748",
-  "email" : "studenttwo@ie.com",
-  "birthdate" : "2000-01-10"
+  "email" : "studentone@ie.com",
+  "birthdate" : "2003-01-10"
 }
 
 ### Delete
-DELETE  {{url}}/v1/students/2
+DELETE  {{url}}/v1/students/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2OTczMzk5OTAsInN1YiI6MX0.EZO8aoijEd51h91B31G7v1KG-q-iu1ym680vvmA6HxI
 
 
 
@@ -80,16 +81,20 @@ DELETE  {{url}}/v1/students/2
 
 ### GetAll Courses 
 GET {{url}}/v1/courses
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2OTcyNjY4MDQsInN1YiI6MX0.wBq_znZZTkdhEAkzmtOq71723Qq6Kyoob0PWnDruU6Q
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2OTczMzk5OTAsInN1YiI6MX0.EZO8aoijEd51h91B31G7v1KG-q-iu1ym680vvmA6HxI
 
 ### GetByID Courses
 GET {{url}}/v1/courses/1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2OTcyNjY4MDQsInN1YiI6MX0.wBq_znZZTkdhEAkzmtOq71723Qq6Kyoob0PWnDruU6Q
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2OTczMzk5OTAsInN1YiI6MX0.EZO8aoijEd51h91B31G7v1KG-q-iu1ym680vvmA6HxI
+
+### Add Courses to Student
+GET {{url}}/v1/students/add-course?studentID=1&courseID=1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2OTczMzk5OTAsInN1YiI6MX0.EZO8aoijEd51h91B31G7v1KG-q-iu1ym680vvmA6HxI
 
 ### Post
 POST {{url}}/v1/courses
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2OTczMzc0OTksInN1YiI6MX0.vqNZbClMSQiqyEzXYOws0zyDqMjH-B3T5cBIw0waz0w
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2OTczMzk5OTAsInN1YiI6MX0.EZO8aoijEd51h91B31G7v1KG-q-iu1ym680vvmA6HxI
 
 {
   "name" : "Pemrograman Dasar"
@@ -98,7 +103,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2OTczMzc0O
 ### Put
 PUT {{url}}/v1/courses/1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2OTczMzc0OTksInN1YiI6MX0.vqNZbClMSQiqyEzXYOws0zyDqMjH-B3T5cBIw0waz0w
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2OTczMzk5OTAsInN1YiI6MX0.EZO8aoijEd51h91B31G7v1KG-q-iu1ym680vvmA6HxI
 
 {
   "name" : "Pemrograman Berorientasi Objek"
@@ -106,4 +111,4 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2OTczMzc0O
 
 ### Delete
 DELETE  {{url}}/v1/courses/1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2OTczMzc0OTksInN1YiI6MX0.vqNZbClMSQiqyEzXYOws0zyDqMjH-B3T5cBIw0waz0w
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2OTczMzk5OTAsInN1YiI6MX0.EZO8aoijEd51h91B31G7v1KG-q-iu1ym680vvmA6HxI
