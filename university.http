@@ -1,12 +1,11 @@
 @url = http://localhost:3030
 
-### GetAll Student 
-GET {{url}}/v1/students
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2OTcyNjY4MDQsInN1YiI6MX0.wBq_znZZTkdhEAkzmtOq71723Qq6Kyoob0PWnDruU6Q
 
-### GetByID Student
-GET {{url}}/v1/students/5
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2OTcyNjY4MDQsInN1YiI6MX0.wBq_znZZTkdhEAkzmtOq71723Qq6Kyoob0PWnDruU6Q
+
+
+# ----
+# AUTH
+# ----
 
 ### SignUp
 POST {{url}}/v1/signup
@@ -26,28 +25,85 @@ Content-Type: application/json
   "password" : "123",
 }
 
+
+
+
+# -------
+# STUDENT
+# -------
+
+### GetAll Student 
+GET {{url}}/v1/students
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2OTcyNjY4MDQsInN1YiI6MX0.wBq_znZZTkdhEAkzmtOq71723Qq6Kyoob0PWnDruU6Q
+
+### GetByID Student
+GET {{url}}/v1/students/5
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2OTcyNjY4MDQsInN1YiI6MX0.wBq_znZZTkdhEAkzmtOq71723Qq6Kyoob0PWnDruU6Q
+
 ### Post
 POST {{url}}/v1/students
 Content-Type: application/json
-# Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2OTcxODcwMjcsInN1YiI6MX0.8eBMTufHrZuspM04YwiCfcl11HnSPqhVmDii9NlV94M
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2OTczMzc0OTksInN1YiI6MX0.vqNZbClMSQiqyEzXYOws0zyDqMjH-B3T5cBIw0waz0w
 
 {
-  "name" : "Student Two",
+  "name" : "Student One",
   "address" : "Tangerang",
   "major" : "Informatics Engineering",
-  "Phone" : "0317938748"
+  "phone" : "0317938748",
+  "email" : "studentone@ie.com",
+  "birthdate" : "2000-01-10"
 }
 
 ### Put
 PUT {{url}}/v1/students/1
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2OTczMzc0OTksInN1YiI6MX0.vqNZbClMSQiqyEzXYOws0zyDqMjH-B3T5cBIw0waz0w
 
 {
-  "name" : "Student One",
-  "address" : "Bandung",
+  "name" : "Student Two",
+  "address" : "Tangerang",
   "major" : "Informatics Engineering",
-  "Phone" : "0317987001"
+  "phone" : "0317938748",
+  "email" : "studenttwo@ie.com",
+  "birthdate" : "2000-01-10"
 }
 
 ### Delete
 DELETE  {{url}}/v1/students/2
+
+
+
+
+# -------
+# COURSES
+# -------
+
+### GetAll Courses 
+GET {{url}}/v1/courses
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2OTcyNjY4MDQsInN1YiI6MX0.wBq_znZZTkdhEAkzmtOq71723Qq6Kyoob0PWnDruU6Q
+
+### GetByID Courses
+GET {{url}}/v1/courses/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2OTcyNjY4MDQsInN1YiI6MX0.wBq_znZZTkdhEAkzmtOq71723Qq6Kyoob0PWnDruU6Q
+
+### Post
+POST {{url}}/v1/courses
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2OTczMzc0OTksInN1YiI6MX0.vqNZbClMSQiqyEzXYOws0zyDqMjH-B3T5cBIw0waz0w
+
+{
+  "name" : "Pemrograman Dasar"
+}
+
+### Put
+PUT {{url}}/v1/courses/1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2OTczMzc0OTksInN1YiI6MX0.vqNZbClMSQiqyEzXYOws0zyDqMjH-B3T5cBIw0waz0w
+
+{
+  "name" : "Pemrograman Berorientasi Objek"
+}
+
+### Delete
+DELETE  {{url}}/v1/courses/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2OTczMzc0OTksInN1YiI6MX0.vqNZbClMSQiqyEzXYOws0zyDqMjH-B3T5cBIw0waz0w
