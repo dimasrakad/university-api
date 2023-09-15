@@ -65,7 +65,7 @@ func (h *studentHandler) CreateStudentHandler(c *gin.Context) {
 		}
 	}
 
-	student, err := h.studentService.Create(studentRequest)
+	s, err := h.studentService.Create(studentRequest)
 
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
@@ -74,8 +74,10 @@ func (h *studentHandler) CreateStudentHandler(c *gin.Context) {
 		return
 	}
 
+	studentResponse := student.ConvertToStudentResponse(s)
+
 	c.JSON(http.StatusOK, gin.H{
-		"data": student,
+		"data": studentResponse,
 	})
 }
 
@@ -142,6 +144,28 @@ func (h *studentHandler) UpdateStudentHandler(c *gin.Context) {
 func (h *studentHandler) DeleteStudentHandler(c *gin.Context) {
 	ID, _ := strconv.Atoi(c.Param("id"))
 	b, err := h.studentService.Delete(ID)
+	studentResponse := student.ConvertToStudentResponse(b)
+
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"errors": err,
+		})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{
+		"data": studentResponse,
+	})
+}
+
+func (h *studentHandler) AddCourseToStudentHandler(c *gin.Context) {
+	stringStudentID := c.Query("studentID")
+	stringCourseID := c.Query("courseID")
+
+	intStudentID, _ := strconv.Atoi(stringStudentID)
+	intCourseID, _ := strconv.Atoi(stringCourseID)
+
+	b, err := h.studentService.AddCourseToStudent(intStudentID, intCourseID)
 	studentResponse := student.ConvertToStudentResponse(b)
 
 	if err != nil {

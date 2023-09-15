@@ -13,6 +13,7 @@ type Service interface {
 	Create(studentRequest StudentRequest) (Student, error)
 	Update(ID int, StudentRequest StudentRequest) (Student, error)
 	Delete(ID int) (Student, error)
+	AddCourseToStudent(studentID int, courseID int) (Student, error)
 }
 
 type service struct {
@@ -60,14 +61,14 @@ func (s *service) Update(ID int, studentRequest StudentRequest) (Student, error)
 
 	// Validasi data mahasiswa
 	v := validator.New()
-	if err := v.Struct(studentRequest); err != nil {
-		return Student{}, err
+	if e := v.Struct(studentRequest); e != nil {
+		return Student{}, e
 	}
 
 	// Temukan mahasiswa berdasarkan ID
-	student, err := s.repository.FindByID(ID)
-	if err != nil {
-		return Student{}, err
+	student, e := s.repository.FindByID(ID)
+	if e != nil {
+		return Student{}, e
 	}
 
 	if studentRequest.Name != "" {
@@ -99,6 +100,12 @@ func (s *service) Update(ID int, studentRequest StudentRequest) (Student, error)
 func (s *service) Delete(ID int) (Student, error) {
 	student, err := s.repository.FindByID(ID)
 	_, err = s.repository.Delete(student)
+
+	return student, err
+}
+
+func (s *service) AddCourseToStudent(studentID int, courseID int) (Student, error) {
+	student, err := s.repository.AddCourseToStudent(studentID, courseID)
 
 	return student, err
 }

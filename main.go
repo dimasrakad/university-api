@@ -59,6 +59,7 @@ func main() {
 	routerV1Students.GET("/:id", studentHandler.GetStudentHandler)
 	routerV1Students.PUT("/:id", studentHandler.UpdateStudentHandler)
 	routerV1Students.DELETE("/:id", studentHandler.DeleteStudentHandler)
+	routerV1Students.GET("/add-course", studentHandler.AddCourseToStudentHandler)
 
 	/*
 		COURSE ROUTER

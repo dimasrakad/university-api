@@ -1,6 +1,10 @@
 package student
 
-import "gorm.io/gorm"
+import (
+	"university-api/course"
+
+	"gorm.io/gorm"
+)
 
 type Repository interface {
 	FindAll() ([]Student, error)
@@ -8,7 +12,7 @@ type Repository interface {
 	Create(student Student) (Student, error)
 	Update(student Student) (Student, error)
 	Delete(student Student) (Student, error)
-	// AddCourseToStudent(studentID int, courseID int) (Student, error)
+	AddCourseToStudent(studentID int, courseID int) (Student, error)
 }
 
 type repository struct {
@@ -30,49 +34,49 @@ func (r *repository) FindAll() ([]Student, error) {
 func (r *repository) FindByID(ID int) (Student, error) {
 	var student Student
 
-	err := r.db.First(&student, ID).Error
+	err := r.db.Preload("Courses").First(&student, ID).Error
 
 	return student, err
 }
 
 func (r *repository) Create(student Student) (Student, error) {
-	err := r.db.Create(&student).Error
+	err := r.db.Preload("Courses").Create(&student).Error
 
 	return student, err
 }
 
 func (r *repository) Update(student Student) (Student, error) {
-	err := r.db.Save(&student).Error
+	err := r.db.Preload("Courses").Save(&student).Error
 
 	return student, err
 }
 
 func (r *repository) Delete(student Student) (Student, error) {
-	err := r.db.Delete(&student).Error
+	err := r.db.Preload("Courses").Delete(&student).Error
 
 	return student, err
 }
 
-// func (r *repository) AddCourseToStudent(studentID int, courseID int) (Student, error) {
-// 	// Ambil data siswa dari database
-//     student, err := GetStudentByID(studentID)
-//     if err != nil {
-//         return err
-//     }
+func (r *repository) AddCourseToStudent(studentID int, courseID int) (Student, error) {
+	// Ambil data siswa dari database
+	student, err := r.FindByID(studentID)
+	if err != nil {
+		return student, err
+	}
 
-//     // Ambil data kursus dari database
-//     course, err := GetCourseByID(courseID)
-//     if err != nil {
-//         return err
-//     }
+	// Ambil data mata kuliah dari database
+	newCourse, err := course.NewRepository(r.db).FindByID(courseID)
+	if err != nil {
+		return student, err
+	}
 
-//     // Tambahkan ID kursus ke daftar kursus siswa
-//     student.Courses = append(student.Courses, courseID)
+	// Tambahkan ID mata kuliah ke daftar mata kuliah siswa
+	student.Courses = append(student.Courses, newCourse)
 
-//     // Simpan perubahan ke dalam database
-//     if err := UpdateStudent(student); err != nil {
-//         return err
-//     }
+	// Simpan perubahan ke dalam database
+	if student, err := r.Update(student); err != nil {
+		return student, err
+	}
 
-//     return nil
-// }
+	return student, nil
+}
